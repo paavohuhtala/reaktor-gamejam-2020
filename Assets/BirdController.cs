@@ -55,4 +55,12 @@ public class BirdController : MonoBehaviour
             body.AddForce(direction * HorizontalSpeed, ForceMode.Force);
         }
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "Fruit")
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 }
