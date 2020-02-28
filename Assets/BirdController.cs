@@ -58,7 +58,7 @@ public class BirdController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Fruit")
+        if(collision.gameObject.tag == "Fruit")
         {
             Destroy(collision.gameObject);
         }
