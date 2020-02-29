@@ -5,15 +5,17 @@ public class BirdController : MonoBehaviour
     private readonly Vector3 Left = new Vector3(0, 0, 1);
     private readonly Vector3 Right = new Vector3(0, 0, -1);
 
-    public float HorizontalSpeed = 10.0f;
-    public float FlapForce = 200.0f;
-    public float FlapSpaceDelay = 0.5f;
-    public float FlapCooldown = 0.5f;
+    public float HorizontalSpeed = 200.0f;
+    public float HorizontalTurnMultiplier = 3.0f;
+    public float FlapForce = 75.0f;
+    public float FlapCooldown = 0.3f;
+    public float GlideToFlapTransition = 0.2f;
 
     public float AntigravityMultiplier = -0.7f;
     public float GlideMaxVerticalVelocity = 2.5f;
 
     private float timeOfLastFlap = 0.0f;
+    private float timeOfLastGlide = 0.0f;
 
     private void Start()
     {
@@ -25,15 +27,19 @@ public class BirdController : MonoBehaviour
         var body = GetComponent<Rigidbody>();
 
         var timeSinceLastFlap = Time.timeSinceLevelLoad - timeOfLastFlap;
+        var timeSinceLastGlide = Time.timeSinceLevelLoad - timeOfLastGlide;
 
-        if (timeSinceLastFlap > FlapCooldown && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.D))
         {
-            body.AddForce(Vector3.up * FlapForce);
+            // FlapForce "reloads" linearly during FlapCooldown
+            var FlapForceFactor = Mathf.Min(1, (timeSinceLastFlap / FlapCooldown));
+            body.AddForce(Vector3.up * FlapForce * FlapForceFactor);
             timeOfLastFlap = Time.timeSinceLevelLoad;
         }
 
-        if (timeSinceLastFlap > FlapSpaceDelay && Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
+            timeOfLastGlide = Time.timeSinceLevelLoad;
             body.AddForce(Physics.gravity * AntigravityMultiplier, ForceMode.Force);
             body.velocity = new Vector3(0, Mathf.Min(body.velocity.y, GlideMaxVerticalVelocity), body.velocity.z);
         }
@@ -42,16 +48,32 @@ public class BirdController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            direction += Left;
+            if (body.velocity.z < 0) // Moving left
+            {
+                direction = Left * HorizontalTurnMultiplier;
+            }
+            else
+            {
+                direction += Left;
+            }
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            direction += Right;
-        }
+            if (body.velocity.z > 0) // Moving left
+            {
+                direction = Right * HorizontalTurnMultiplier;
+            }
+            else
+            {
+                direction += Right;
+            }
+        } 
+
 
         if (direction.magnitude > 0.001)
         {
+            Debug.Log(body.velocity.z);
             body.AddForce(direction * HorizontalSpeed, ForceMode.Force);
         }
     }
