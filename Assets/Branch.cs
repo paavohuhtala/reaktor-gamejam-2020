@@ -36,12 +36,16 @@ public class Branch : MonoBehaviour
     public float BranchAngle = 30.0f;
 
     public bool FullyGrown;
+    public bool FruitsGrown;
 
     public Transform Trunk;
     public Transform Branches;
+    public Transform FruitOrigins;
 
     public Transform LeftBranchRoot; 
     public Transform RightBranchRoot;
+
+    public GameObject FruitPrefab;
 
     private GameObject treePrefab;
 
@@ -126,6 +130,20 @@ public class Branch : MonoBehaviour
 
             CreateBranch(LeftBranchRoot.position, Side.Left);
             CreateBranch(RightBranchRoot.position, Side.Right);
+        }
+
+        if(FullyGrown && !FruitsGrown)
+        {
+            var fruitPositions = FruitOrigins.GetComponentsInChildren<Transform>();
+
+            foreach(var fp in fruitPositions)
+            {
+                if (fp == FruitOrigins) continue;
+
+                Instantiate(FruitPrefab, fp.position, FruitPrefab.transform.rotation);
+            }
+
+            FruitsGrown = true;
         }
     }
 }
