@@ -14,6 +14,8 @@ public class BirdController : MonoBehaviour
     public float AntigravityMultiplier = -0.7f;
     public float GlideMaxVerticalVelocity = 2.5f;
 
+    public GameManager manager;
+
     private float timeOfLastFlap = 0.0f;
     private float timeOfLastGlide = 0.0f;
 
@@ -24,6 +26,8 @@ public class BirdController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (manager.state == GameState.Gameover) return;
+
         var body = GetComponent<Rigidbody>();
 
         var timeSinceLastFlap = Time.timeSinceLevelLoad - timeOfLastFlap;
@@ -91,7 +95,9 @@ public class BirdController : MonoBehaviour
     {
         if(collider.gameObject.tag == "Fruit")
         {
+            collider.gameObject.SetActive(false);
             Destroy(collider.gameObject);
+            manager.AddScore(10);
         }
     }
 }
