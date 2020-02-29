@@ -86,6 +86,7 @@ MonoBehaviour:
   AntigravityMultiplier: -0.8
   GlideMaxVerticalVelocity: 2
   manager: {fileID: 0}
+  bodyTransform: {fileID: 1971847743956214199}
 --- !u!82 &-3129083936047387125
 AudioSource:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class BirdController : MonoBehaviour
 
     private float timeOfLastFlap = 0.0f;
     private float timeOfLastGlide = 0.0f;
+    public Transform bodyTransform;
 
     private void Start()
     {
@@ -64,6 +65,7 @@ public class BirdController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
+            bodyTransform.rotation = Quaternion.Euler(-90,180,0);
             if (body.velocity.z < 0) // Moving left
             {
                 direction = Left * HorizontalTurnMultiplier;
@@ -76,6 +78,7 @@ public class BirdController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            bodyTransform.rotation = Quaternion.Euler(-90,0,0);
             if (body.velocity.z > 0) // Moving left
             {
                 direction = Right * HorizontalTurnMultiplier;
