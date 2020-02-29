@@ -19,10 +19,15 @@ public class GameManager : MonoBehaviour
     public float lengthOfDay = 10.0f;
     public float currentTimeOfDay = 0.0f;
 
+
+    public AudioSource worldRecordAudio;
+    private bool worldRecordSaid;
+
     public GameState state;
 
     private void Start()
     {
+        PlayerPrefs.DeleteAll();
         hightScoreText.text = getHighScore().ToString();
     }
 
@@ -33,8 +38,16 @@ public class GameManager : MonoBehaviour
         if (state == GameState.Gameover && Input.GetKey(KeyCode.Return))
         {
             if (score > getHighScore())
-                setHighScore(score);
-            
+            {
+                if (!worldRecordSaid)
+                {
+                    worldRecordAudio.Play();
+                    worldRecordSaid = true;
+                }
+
+                worldRecordAudio.Play();
+            }
+                
             SceneManager.LoadScene("Main");
         }
 
@@ -53,7 +66,16 @@ public class GameManager : MonoBehaviour
         score += newScore;
 
         if (score > getHighScore())
+        {
             setHighScore(score);
+
+            if(!worldRecordSaid)
+            {           
+                worldRecordAudio.Play();
+                worldRecordSaid = true;
+            }
+            
+        }      
     }
 
     private int getHighScore()

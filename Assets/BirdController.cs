@@ -4,6 +4,7 @@ public class BirdController : MonoBehaviour
 {
     AudioSource flapAudio;
     AudioSource pickupFruitAudio;
+
     private readonly Vector3 Left = new Vector3(0, 0, 1);
     private readonly Vector3 Right = new Vector3(0, 0, -1);
 
