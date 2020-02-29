@@ -2,8 +2,11 @@
 
 public class BirdController : MonoBehaviour
 {
+    AudioSource flapAudio;
+    AudioSource pickupFruitAudio;
     private readonly Vector3 Left = new Vector3(0, 0, 1);
     private readonly Vector3 Right = new Vector3(0, 0, -1);
+
 
     public float HorizontalSpeed = 200.0f;
     public float HorizontalTurnMultiplier = 3.0f;
@@ -21,7 +24,9 @@ public class BirdController : MonoBehaviour
 
     private void Start()
     {
-        
+        var audioSources = GetComponents<AudioSource>();
+        flapAudio = audioSources[0];
+        pickupFruitAudio = audioSources[1];
     }
 
     public void FixedUpdate()
@@ -35,10 +40,17 @@ public class BirdController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            // FlapForce "reloads" linearly during FlapCooldown
-            var FlapForceFactor = Mathf.Min(1, (timeSinceLastFlap / FlapCooldown));
-            body.AddForce(Vector3.up * FlapForce * FlapForceFactor);
-            timeOfLastFlap = Time.timeSinceLevelLoad;
+            if (body.velocity.y < 10)
+            {
+                // FlapForce "reloads" linearly during FlapCooldown
+                var FlapForceFactor = Mathf.Min(1, (timeSinceLastFlap / FlapCooldown));
+                body.AddForce(Vector3.up * FlapForce * FlapForceFactor);
+                if (timeSinceLastFlap > 0.1f)
+                {
+                    flapAudio.Play();
+                }
+                timeOfLastFlap = Time.timeSinceLevelLoad;
+            }
         }
 
         if (Input.GetKey(KeyCode.Space))
@@ -77,7 +89,6 @@ public class BirdController : MonoBehaviour
 
         if (direction.magnitude > 0.001)
         {
-            Debug.Log(body.velocity.z);
             body.AddForce(direction * HorizontalSpeed, ForceMode.Force);
         }
     }
@@ -98,6 +109,8 @@ public class BirdController : MonoBehaviour
             collider.gameObject.SetActive(false);
             Destroy(collider.gameObject);
             manager.AddScore(10);
+
+            pickupFruitAudio.Play();
         }
     }
 }
