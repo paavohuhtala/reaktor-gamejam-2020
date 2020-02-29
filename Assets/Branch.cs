@@ -45,10 +45,11 @@ public class Branch : MonoBehaviour
     public Transform CenterBranchRoot;
     public Transform LeftBranchRoot; 
     public Transform RightBranchRoot;
-
+        
     public GameObject FruitPrefab;
-
     private GameObject treePrefab;
+
+    public Transform LeavesTransform;
 
     void Start()
     {
@@ -127,6 +128,11 @@ public class Branch : MonoBehaviour
         if (CurrentLength >= TargetLength && !FullyGrown && Depth < MaxDepth)
         {
             FullyGrown = true;
+            LeavesTransform.gameObject.SetActive(true);
+            var leavesScale = TargetLength / 8.0f;
+            LeavesTransform.localScale = new Vector3(leavesScale, leavesScale, leavesScale);
+            LeavesTransform.position = CenterBranchRoot.position + new Vector3(Random.value * 1.2f, 0.0f, 0.0f);
+            LeavesTransform.Rotate(new Vector3(1, 0, 0), Random.Range(0.0f, 360.0f), Space.World);
 
             CreateBranch(LeftBranchRoot.position, Side.Left);
             CreateBranch(RightBranchRoot.position, Side.Right);
