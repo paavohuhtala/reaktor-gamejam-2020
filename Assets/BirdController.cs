@@ -21,13 +21,28 @@ public class BirdController : MonoBehaviour
 
     private float timeOfLastFlap = 0.0f;
     private float timeOfLastGlide = 0.0f;
+
     public Transform bodyTransform;
+    public Vector3 originalBodyScale;
+
+    public Transform wingTransform;
+
+    public float wingUpAngle = 40;
+    public float wingDefaultAngle = 0;
+    public float wingDownAngle = -45;
 
     private void Start()
     {
         var audioSources = GetComponents<AudioSource>();
         flapAudio = audioSources[0];
         pickupFruitAudio = audioSources[1];
+        originalBodyScale = bodyTransform.localScale;
+    }
+
+    public void Update()
+    {
+        var angle = Mathf.Sin(Time.timeSinceLevelLoad * 10f) * 30f;
+        wingTransform.localRotation = Quaternion.AngleAxis(angle, new Vector3(0, 1, 0));
     }
 
     public void FixedUpdate()
@@ -65,7 +80,7 @@ public class BirdController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            bodyTransform.rotation = Quaternion.Euler(-90,180,0);
+            bodyTransform.localScale = new Vector3(originalBodyScale.x, -originalBodyScale.y, originalBodyScale.z);
             if (body.velocity.z < 0) // Moving left
             {
                 direction = Left * HorizontalTurnMultiplier;
@@ -78,7 +93,7 @@ public class BirdController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            bodyTransform.rotation = Quaternion.Euler(-90,0,0);
+            bodyTransform.localScale = originalBodyScale;
             if (body.velocity.z > 0) // Moving left
             {
                 direction = Right * HorizontalTurnMultiplier;
