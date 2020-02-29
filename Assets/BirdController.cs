@@ -56,11 +56,20 @@ public class BirdController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+//
+//    void OnCollisionEnter(Collision collision)
+//    {
+//        if(collision.gameObject.tag == "Fruit")
+//        {
+//            Destroy(collision.gameObject);
+//        }
+//    }
+
+    void OnTriggerEnter(Collider collider)
     {
-        if(collision.gameObject.tag == "Fruit")
+        if(collider.gameObject.tag == "Fruit")
         {
-            Destroy(collision.gameObject);
+            Destroy(collider.gameObject);
         }
     }
 }
