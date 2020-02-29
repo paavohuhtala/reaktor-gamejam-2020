@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
+  InnerDepth: 0
   StartingLength: 0
   CurrentLength: 0
   TargetLength: 20
@@ -286,7 +287,7 @@ MonoBehaviour:
   Type: 0
   StartingThickness: 0.25
   TargetThickness: 3
-  GrowthRate: 5
+  GrowthRate: 10
   BranchAngle: 35
   FullyGrown: 0
   Trunk: {fileID: 1532370381144224497}

@@ -70,12 +70,17 @@ public class Branch : MonoBehaviour
         }
     }
 
-    void CreateBranch(Vector3 root, Side side)
+    Branch CreateBranch(Vector3 root, Side branchSide)
     {
+        if (Type == BranchType.InnerBranch && InnerDepth >= InnerMaxDepth)
+        {
+            return null;
+        }
+
         var xAxis = new Vector3(1.0f, 0.0f, 0.0f);
         var yOffset = new Vector3(0, -0.5f, 0.0f);
 
-        var angle = ComputeBranchAngle(side);
+        var angle = ComputeBranchAngle(branchSide);
 
         var branchGameObject = Instantiate(
             treePrefab,
@@ -89,16 +94,21 @@ public class Branch : MonoBehaviour
         branch.Depth = Depth + 1;
         branch.TargetThickness = TargetThickness * 0.75f;
         branch.TargetLength = TargetLength * 0.85f;
-        branch.Side = side;
+        branch.Side = branchSide;
 
-        if (side == Side)
+        if (Side == Side.Center || (Type == BranchType.Main && branchSide == Side))
         {
             branch.Type = BranchType.Main;
         }
-        else
+        else if (Type == BranchType.InnerBranch || Side != branchSide)
         {
             branch.Type = BranchType.InnerBranch;
+            branch.InnerDepth = InnerDepth + 1;
         }
+
+        branch.BranchAngle = BranchAngle + 20;
+
+        return branch;
     }
 
     void Update()
@@ -109,7 +119,8 @@ public class Branch : MonoBehaviour
             UpdateScale();
 
         }
-        else if (CurrentLength >= TargetLength && !FullyGrown && Depth < MaxDepth)
+
+        if (CurrentLength >= TargetLength && !FullyGrown && Depth < MaxDepth)
         {
             FullyGrown = true;
 
