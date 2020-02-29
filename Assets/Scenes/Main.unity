@@ -252,7 +252,7 @@ MonoBehaviour:
   scoreText: {fileID: 2000540800}
   playAgainText: {fileID: 147818592}
   hightScoreText: {fileID: 25118582}
-  lengthOfDay: 10
+  lengthOfDay: 120
   currentTimeOfDay: 0
   state: 0
 --- !u!4 &242764088
@@ -370,6 +370,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 54698018923894138, guid: e0d26d4bdd3114c27bb6a092d7c69935,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8aa0559dc4d7a40f894f574ae83c9e44, type: 2}
     - target: {fileID: 1971847743956214199, guid: e0d26d4bdd3114c27bb6a092d7c69935,
         type: 3}
       propertyPath: m_LocalScale.z
@@ -380,6 +385,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.50791
       objectReference: {fileID: 0}
+    - target: {fileID: 3835631775899363192, guid: e0d26d4bdd3114c27bb6a092d7c69935,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8aa0559dc4d7a40f894f574ae83c9e44, type: 2}
+    - target: {fileID: 3835631775899363192, guid: e0d26d4bdd3114c27bb6a092d7c69935,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7fe3a5f8c9b8f46a88b4203806ca22aa, type: 2}
     - target: {fileID: 4388197455767876194, guid: e0d26d4bdd3114c27bb6a092d7c69935,
         type: 3}
       propertyPath: manager
