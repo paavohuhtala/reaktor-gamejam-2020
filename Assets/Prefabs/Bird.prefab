@@ -218,10 +218,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05961b9cd6ca84ffe914044d3c75c71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HorizontalSpeed: 10
-  FlapForce: 750
-  FlapSpaceDelay: 0.5
+  HorizontalSpeed: 20
+  HorizontalTurnMultiplier: 8
+  FlapForce: 550
   FlapCooldown: 0.3
+  GlideToFlapTransition: 0.2
   AntigravityMultiplier: -0.8
   GlideMaxVerticalVelocity: 2
 --- !u!1 &4388197455981534757
