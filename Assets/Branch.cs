@@ -42,6 +42,7 @@ public class Branch : MonoBehaviour
     public Transform Branches;
     public Transform FruitOrigins;
 
+    public Transform CenterBranchRoot;
     public Transform LeftBranchRoot; 
     public Transform RightBranchRoot;
 
@@ -74,7 +75,7 @@ public class Branch : MonoBehaviour
         }
     }
 
-    Branch CreateBranch(Vector3 root, Side branchSide)
+    Branch CreateBranch(Vector3 root, Side branchSide, float lengthMultiplier = 0.85f, float thicknessMultiplier = 0.75f)
     {
         if (Type == BranchType.InnerBranch && InnerDepth >= InnerMaxDepth)
         {
@@ -82,7 +83,7 @@ public class Branch : MonoBehaviour
         }
 
         var xAxis = new Vector3(1.0f, 0.0f, 0.0f);
-        var yOffset = new Vector3(0, -0.5f, 0.0f);
+        var yOffset = new Vector3(0, -(TargetThickness / 2.0f), 0.0f);
 
         var angle = ComputeBranchAngle(branchSide);
 
@@ -96,8 +97,8 @@ public class Branch : MonoBehaviour
         var branch = branchGameObject.GetComponent<Branch>();
 
         branch.Depth = Depth + 1;
-        branch.TargetThickness = TargetThickness * 0.75f;
-        branch.TargetLength = TargetLength * 0.85f;
+        branch.TargetThickness = TargetThickness * thicknessMultiplier;
+        branch.TargetLength = TargetLength * lengthMultiplier;
         branch.Side = branchSide;
 
         if (Side == Side.Center || (Type == BranchType.Main && branchSide == Side))
@@ -121,7 +122,6 @@ public class Branch : MonoBehaviour
         {
             CurrentLength = Mathf.Min(TargetLength, CurrentLength + GrowthRate * Time.deltaTime);
             UpdateScale();
-
         }
 
         if (CurrentLength >= TargetLength && !FullyGrown && Depth < MaxDepth)
@@ -130,6 +130,11 @@ public class Branch : MonoBehaviour
 
             CreateBranch(LeftBranchRoot.position, Side.Left);
             CreateBranch(RightBranchRoot.position, Side.Right);
+
+            if (Depth < 2 && Side == Side.Center)
+            {
+                CreateBranch(CenterBranchRoot.position, Side.Center, 1.3f, 0.95f);
+            }
         }
 
         if(FullyGrown && !FruitsGrown)

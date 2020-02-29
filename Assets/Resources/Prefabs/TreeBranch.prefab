@@ -59,6 +59,7 @@ Transform:
   m_Children:
   - {fileID: 3880345328651613076}
   - {fileID: 3028071271573842392}
+  - {fileID: 8993799614965275691}
   m_Father: {fileID: 4547930009700452472}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -234,6 +235,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &4709000672903056308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8993799614965275691}
+  m_Layer: 0
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8993799614965275691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709000672903056308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3699968220287565799}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5139676355994546447
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +389,7 @@ MonoBehaviour:
   Trunk: {fileID: 1532370381144224497}
   Branches: {fileID: 5567715632274335678}
   FruitOrigins: {fileID: 6233831863253357480}
+  CenterBranchRoot: {fileID: 8993799614965275691}
   LeftBranchRoot: {fileID: 3880345328651613076}
   RightBranchRoot: {fileID: 3028071271573842392}
   FruitPrefab: {fileID: 8401616743431851298, guid: ff9565fd561e8442f8ac48a54104ecbf,
