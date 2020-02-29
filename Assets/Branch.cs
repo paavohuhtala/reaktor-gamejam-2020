@@ -145,13 +145,19 @@ public class Branch : MonoBehaviour
 
         if(FullyGrown && !FruitsGrown)
         {
-            var fruitPositions = FruitOrigins.GetComponentsInChildren<Transform>();
+            var leavesSize = LeavesTransform.localScale.x;
+            var numberOfFruit = Random.Range(0, Mathf.Pow(leavesSize / 3.0f, 2));
 
-            foreach(var fp in fruitPositions)
+            for (var i = 0; i < numberOfFruit; i++)
             {
-                if (fp == FruitOrigins) continue;
+                var fruitPosition = Random.insideUnitCircle * leavesSize * 4;
+                var fruitPosition3d = new Vector3(
+                    FruitOrigins.position.x,
+                    LeavesTransform.position.y + fruitPosition.y,
+                    LeavesTransform.position.z + fruitPosition.x
+                );
 
-                Instantiate(FruitPrefab, fp.position, FruitPrefab.transform.rotation);
+                Instantiate(FruitPrefab, fruitPosition3d, FruitPrefab.transform.rotation);
             }
 
             FruitsGrown = true;

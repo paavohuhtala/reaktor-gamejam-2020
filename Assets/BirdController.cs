@@ -32,6 +32,8 @@ public class BirdController : MonoBehaviour
     public float wingDefaultAngle = 0;
     public float wingDownAngle = -45;
 
+    public AudioClip EatSound;
+
     private void Start()
     {
         var audioSources = GetComponents<AudioSource>();
@@ -112,15 +114,6 @@ public class BirdController : MonoBehaviour
         }
     }
 
-//
-//    void OnCollisionEnter(Collision collision)
-//    {
-//        if(collision.gameObject.tag == "Fruit")
-//        {
-//            Destroy(collision.gameObject);
-//        }
-//    }
-
     void OnTriggerEnter(Collider collider)
     {
         if(collider.gameObject.tag == "Fruit")
@@ -128,8 +121,9 @@ public class BirdController : MonoBehaviour
             collider.gameObject.SetActive(false);
             Destroy(collider.gameObject);
             manager.AddScore(10);
-
-            pickupFruitAudio.Play();
+            // pickupFruitAudio.Play();
+            pickupFruitAudio.pitch = Random.Range(0.85f, 1.25f);
+            pickupFruitAudio.PlayOneShot(EatSound);
         }
     }
 }

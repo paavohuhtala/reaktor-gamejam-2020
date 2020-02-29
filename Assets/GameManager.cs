@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -37,17 +36,6 @@ public class GameManager : MonoBehaviour
 
         if (state == GameState.Gameover && Input.GetKey(KeyCode.Return))
         {
-            if (score > getHighScore())
-            {
-                if (!worldRecordSaid)
-                {
-                    worldRecordAudio.Play();
-                    worldRecordSaid = true;
-                }
-
-                worldRecordAudio.Play();
-            }
-                
             SceneManager.LoadScene("Main");
         }
 
@@ -63,6 +51,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void AddScore(int newScore) {
+        if (state != GameState.Running)
+        {
+            return;
+        }
+
         score += newScore;
 
         if (score > getHighScore())
