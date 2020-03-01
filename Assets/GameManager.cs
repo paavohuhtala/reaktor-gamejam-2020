@@ -5,6 +5,7 @@ using TMPro;
 
 public enum GameState
 {
+    Starting,
     Running,
     Gameover
 }
@@ -27,27 +28,35 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
-        hightScoreText.text = getHighScore().ToString();
+        if(state == GameState.Running)
+            hightScoreText.text = getHighScore().ToString();
     }
 
     void Update()
     {
-        currentTimeOfDay = Time.timeSinceLevelLoad;
-
-        if (state == GameState.Gameover && Input.GetKey(KeyCode.Return))
+        if(state == GameState.Starting)
         {
-            SceneManager.LoadScene("Main");
+            if (Input.GetKey(KeyCode.Return))
+                SceneManager.LoadScene("Main");
         }
+        else if (state == GameState.Running)
+        {
+            currentTimeOfDay = Time.timeSinceLevelLoad;
 
-        if(currentTimeOfDay < lengthOfDay) 
-        {
-            scoreText.text = (score).ToString("0");
-        }
-        else
-        {
-            playAgainText.text = "Press Enter to play again!";
-            state = GameState.Gameover;
+            if (state == GameState.Gameover && Input.GetKey(KeyCode.Return))
+            {
+                SceneManager.LoadScene("Main");
+            }
+
+            if (currentTimeOfDay < lengthOfDay)
+            {
+                scoreText.text = (score).ToString("0");
+            }
+            else
+            {
+                playAgainText.text = "Press Enter to play again!";
+                state = GameState.Gameover;
+            }
         }
     }
 
