@@ -326,7 +326,7 @@ MonoBehaviour:
   lengthOfDay: 60
   currentTimeOfDay: 0
   MusicStartsSpeedingUpAfter: 30
-  worldRecordAudio: {fileID: 242764089}
+  worldRecordAudio: {fileID: 0}
   state: 0
   MusicStart: {fileID: 0}
   MusicLoop: {fileID: 0}
@@ -357,11 +357,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4e17d94fb02834509bf5ba1907876fb8, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: ce39b2383ce2f488e9f3c1ce78fa2265, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

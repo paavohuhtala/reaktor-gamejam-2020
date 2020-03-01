@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -613,9 +613,9 @@ MonoBehaviour:
   scoreText: {fileID: 661798057}
   playAgainText: {fileID: 245016084}
   hightScoreText: {fileID: 420393690}
-  lengthOfDay: 10
+  lengthOfDay: 60
   currentTimeOfDay: 0
-  MusicStartsSpeedingUpAfter: 5
+  MusicStartsSpeedingUpAfter: 30
   worldRecordAudio: {fileID: 242764089}
   state: 1
   MusicStart: {fileID: 8300000, guid: c7c64b71fdc7c41c19c1bd17706ee079, type: 3}

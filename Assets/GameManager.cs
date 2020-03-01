@@ -40,9 +40,6 @@ public class GameManager : MonoBehaviour
         if(state == GameState.Running)
             hightScoreText.text = getHighScore().ToString();
 
-        PlayerPrefs.DeleteAll();
-        hightScoreText.text = getHighScore().ToString();
-
         MusicPlayer.clip = MusicStart;
         MusicPlayer.Play();
     }
