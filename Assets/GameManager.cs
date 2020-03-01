@@ -1,6 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public enum GameState
 {
@@ -11,9 +12,9 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public int score = 0;
-    public Text scoreText;
-    public Text playAgainText;
-    public Text hightScoreText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI playAgainText;
+    public TextMeshProUGUI hightScoreText;
 
     public float lengthOfDay = 10.0f;
     public float currentTimeOfDay = 0.0f;
