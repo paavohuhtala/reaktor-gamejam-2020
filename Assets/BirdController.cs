@@ -17,10 +17,13 @@ public class BirdController : MonoBehaviour
     public float AntigravityMultiplier = -0.7f;
     public float GlideMaxVerticalVelocity = 2.5f;
 
+    public float PoopCoolDown = 0.3f;
+
     public GameManager manager;
 
     private float timeOfLastFlap = 0.0f;
     private float timeOfLastGlide = 0.0f;
+    private float timeOfLastPoop = 0.0f;
 
     public Transform bodyTransform;
     public Vector3 originalBodyScale;
@@ -32,6 +35,8 @@ public class BirdController : MonoBehaviour
     public float wingDownAngle = -45;
 
     public AudioClip EatSound;
+
+    public GameObject PoopPrefab;
 
     private void Start()
     {
@@ -55,6 +60,7 @@ public class BirdController : MonoBehaviour
 
         var timeSinceLastFlap = Time.timeSinceLevelLoad - timeOfLastFlap;
         var timeSinceLastGlide = Time.timeSinceLevelLoad - timeOfLastGlide;
+        var timeSinceLastPoop = Time.timeSinceLevelLoad - timeOfLastPoop;
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -68,6 +74,17 @@ public class BirdController : MonoBehaviour
                     flapAudio.Play();
                 }
                 timeOfLastFlap = Time.timeSinceLevelLoad;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (timeSinceLastPoop > PoopCoolDown)
+            {
+                var poopPosition3d = new Vector3(body.position.x, body.position.y - 1.3f, body.position.z);
+                GameObject poop = (GameObject)Instantiate(PoopPrefab, poopPosition3d, PoopPrefab.transform.rotation);
+                poop.GetComponent<Rigidbody>().velocity = body.velocity;
+                timeOfLastPoop = Time.timeSinceLevelLoad;
             }
         }
 
