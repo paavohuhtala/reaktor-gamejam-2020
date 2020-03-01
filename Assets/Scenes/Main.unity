@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -427,7 +427,7 @@ MonoBehaviour:
   lengthOfDay: 60
   currentTimeOfDay: 0
   worldRecordAudio: {fileID: 242764089}
-  state: 0
+  state: 1
 --- !u!4 &242764088
 Transform:
   m_ObjectHideFlags: 0
@@ -949,7 +949,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3f30ac7ae81b455480559e2db673a34, type: 2}
   m_sharedMaterial: {fileID: 236608529889733800, guid: c3f30ac7ae81b455480559e2db673a34,
@@ -978,7 +978,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 54.55
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1019,13 +1019,13 @@ MonoBehaviour:
   m_margin: {x: 9.333992, y: 0, z: 3.7822936, w: 0}
   m_textInfo:
     textComponent: {fileID: 420393690}
-    characterCount: 4
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -1168,6 +1168,12 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 242764087}
+    - target: {fileID: 4388197455767876194, guid: e0d26d4bdd3114c27bb6a092d7c69935,
+        type: 3}
+      propertyPath: PoopPrefab
+      value: 
+      objectReference: {fileID: 886726217949745790, guid: 41615456c968e4c6c99f1e8466f07af7,
+        type: 3}
     - target: {fileID: 4388197455767876196, guid: e0d26d4bdd3114c27bb6a092d7c69935,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1928,7 +1934,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3f30ac7ae81b455480559e2db673a34, type: 2}
   m_sharedMaterial: {fileID: 236608529889733800, guid: c3f30ac7ae81b455480559e2db673a34,
@@ -1957,7 +1963,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 54.55
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1998,13 +2004,13 @@ MonoBehaviour:
   m_margin: {x: 9.333992, y: 0, z: 3.7822936, w: 0}
   m_textInfo:
     textComponent: {fileID: 661798057}
-    characterCount: 4
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

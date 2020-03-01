@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     public GameState state;
 
+    private string highScoreVariable = "High Score";
+
     private void Start()
     {
         if(state == GameState.Running)
@@ -37,7 +39,10 @@ public class GameManager : MonoBehaviour
         if(state == GameState.Starting)
         {
             if (Input.GetKey(KeyCode.Return))
+            {
+                state = GameState.Running;
                 SceneManager.LoadScene("Main");
+            }
         }
         else if (state == GameState.Running)
         {
@@ -83,12 +88,12 @@ public class GameManager : MonoBehaviour
 
     private int getHighScore()
     {
-        return PlayerPrefs.GetInt("High Score");
+        return PlayerPrefs.GetInt(highScoreVariable) > 0 ? PlayerPrefs.GetInt(highScoreVariable) : 0;
     }
 
     private void setHighScore(int newHighScore)
     {
-        PlayerPrefs.SetInt("High Score", newHighScore);
+        PlayerPrefs.SetInt(highScoreVariable, newHighScore);
         hightScoreText.text = getHighScore().ToString();
     }
 }
