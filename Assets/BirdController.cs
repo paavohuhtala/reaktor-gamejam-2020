@@ -8,7 +8,6 @@ public class BirdController : MonoBehaviour
     private readonly Vector3 Left = new Vector3(0, 0, 1);
     private readonly Vector3 Right = new Vector3(0, 0, -1);
 
-
     public float HorizontalSpeed = 200.0f;
     public float HorizontalTurnMultiplier = 3.0f;
     public float FlapForce = 75.0f;
@@ -106,7 +105,6 @@ public class BirdController : MonoBehaviour
                 direction += Right;
             }
         } 
-
 
         if (direction.magnitude > 0.001)
         {
