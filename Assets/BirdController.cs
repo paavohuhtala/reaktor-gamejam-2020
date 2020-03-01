@@ -56,7 +56,7 @@ public class BirdController : MonoBehaviour
         var timeSinceLastFlap = Time.timeSinceLevelLoad - timeOfLastFlap;
         var timeSinceLastGlide = Time.timeSinceLevelLoad - timeOfLastGlide;
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.Space))
         {
             if (body.velocity.y < 10)
             {
@@ -71,7 +71,7 @@ public class BirdController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.G))
         {
             timeOfLastGlide = Time.timeSinceLevelLoad;
             body.AddForce(Physics.gravity * AntigravityMultiplier, ForceMode.Force);
