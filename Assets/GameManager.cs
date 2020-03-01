@@ -37,24 +37,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if(state == GameState.Running)
+        if (state == GameState.Running)
+        {
+            MusicPlayer.clip = MusicStart;
+            MusicPlayer.Play();
             hightScoreText.text = getHighScore().ToString();
-
-        MusicPlayer.clip = MusicStart;
-        MusicPlayer.Play();
+        }
     }
 
     void Update()
     {
-
         if (state == GameState.Starting)
         {
+            if (Input.GetKey(KeyCode.Return))
             {
-                if (Input.GetKey(KeyCode.Return))
-                {
-                    state = GameState.Running;
-                    SceneManager.LoadScene("Main");
-                }
+                state = GameState.Running;
+                SceneManager.LoadScene("Main");
             }
 
             return;
