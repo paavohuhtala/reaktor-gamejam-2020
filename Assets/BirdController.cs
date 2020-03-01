@@ -23,6 +23,7 @@ public class BirdController : MonoBehaviour
 
     private float timeOfLastFlap = 0.0f;
     private float timeOfLastGlide = 0.0f;
+    private bool glidingBird = false;
 
     public Transform bodyTransform;
     public Vector3 originalBodyScale;
@@ -47,8 +48,11 @@ public class BirdController : MonoBehaviour
 
     public void Update()
     {
-        var angle = Mathf.Sin(Time.timeSinceLevelLoad * 10f) * 30f;
-        wingTransform.localRotation = Quaternion.AngleAxis(angle, new Vector3(0, 1, 0));
+        if (glidingBird == false)
+        {
+            var angle = Mathf.Sin(Time.timeSinceLevelLoad * 10f) * 30f;
+            wingTransform.localRotation = Quaternion.AngleAxis(angle, new Vector3(0, 1, 0));
+        }
     }
 
     public void FixedUpdate()
@@ -59,6 +63,11 @@ public class BirdController : MonoBehaviour
 
         var timeSinceLastFlap = Time.timeSinceLevelLoad - timeOfLastFlap;
         var timeSinceLastGlide = Time.timeSinceLevelLoad - timeOfLastGlide;
+
+        if (timeSinceLastGlide < 0.1f)
+        {
+            glidingBird = false;
+        }
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -78,6 +87,7 @@ public class BirdController : MonoBehaviour
         if (Input.GetKey(KeyCode.G))
         {
             timeOfLastGlide = Time.timeSinceLevelLoad;
+            glidingBird = true;
             body.AddForce(Physics.gravity * AntigravityMultiplier, ForceMode.Force);
             body.velocity = new Vector3(0, Mathf.Min(body.velocity.y, GlideMaxVerticalVelocity), body.velocity.z);
         }
