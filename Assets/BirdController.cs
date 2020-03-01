@@ -38,12 +38,17 @@ public class BirdController : MonoBehaviour
 
     public GameObject PoopPrefab;
 
+    private bool Dead;
+
+    private Rigidbody body;
+
     private void Start()
     {
         var audioSources = GetComponents<AudioSource>();
         flapAudio = audioSources[0];
         pickupFruitAudio = audioSources[1];
         originalBodyScale = bodyTransform.localScale;
+        body = GetComponent<Rigidbody>();
     }
 
     public void Update()
@@ -57,9 +62,19 @@ public class BirdController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (manager.state == GameState.Gameover) return;
+        if (manager.state == GameState.Gameover)
+        {
+            if (Dead)
+            {
+                return;
+            }
 
-        var body = GetComponent<Rigidbody>();
+            body.constraints = RigidbodyConstraints.None;
+            body.AddTorque(new Vector3(10.0f, 0, 0), ForceMode.Impulse);
+            Dead = true;
+
+            return;
+        }
 
         var timeSinceLastFlap = Time.timeSinceLevelLoad - timeOfLastFlap;
         var timeSinceLastGlide = Time.timeSinceLevelLoad - timeOfLastGlide;
@@ -133,10 +148,8 @@ public class BirdController : MonoBehaviour
             collider.gameObject.SetActive(false);
             Destroy(collider.gameObject);
             manager.AddScore(10);
-            // pickupFruitAudio.Play();
             pickupFruitAudio.pitch = Random.Range(0.85f, 1.25f);
             pickupFruitAudio.PlayOneShot(EatSound);
-
             
             if (Random.Range(0.0f, 1.0f) < PoopToFruitPercentage) 
             {

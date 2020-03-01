@@ -613,9 +613,9 @@ MonoBehaviour:
   scoreText: {fileID: 661798057}
   playAgainText: {fileID: 245016084}
   hightScoreText: {fileID: 420393690}
-  lengthOfDay: 60
+  lengthOfDay: 10
   currentTimeOfDay: 0
-  MusicStartsSpeedingUpAfter: 30
+  MusicStartsSpeedingUpAfter: 5
   worldRecordAudio: {fileID: 242764089}
   state: 1
   MusicStart: {fileID: 8300000, guid: c7c64b71fdc7c41c19c1bd17706ee079, type: 3}
