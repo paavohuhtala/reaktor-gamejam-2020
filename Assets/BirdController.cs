@@ -55,7 +55,13 @@ public class BirdController : MonoBehaviour
     {
         if (glidingBird == false)
         {
-            var angle = Mathf.Sin(Time.timeSinceLevelLoad * 10f) * 30f;
+            var flapSpeed = 10f;
+            if (Dead) 
+            {
+                flapSpeed = 30f;
+            }
+
+            var angle = Mathf.Sin(Time.timeSinceLevelLoad * flapSpeed) * 30f;
             wingTransform.localRotation = Quaternion.AngleAxis(angle, new Vector3(0, 1, 0));
         }
     }
