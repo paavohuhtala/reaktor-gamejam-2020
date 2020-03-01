@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -623,6 +623,35 @@ MonoBehaviour:
   MusicEnd: {fileID: 8300000, guid: cc66d2bc8b1cc42b89eefb5ff5dc7f97, type: 3}
   MusicPlayer: {fileID: 242764090}
   MusicSpeedupFactor: 0.5
+  SkyGradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 0.32067582, b: 0.5566038, a: 1}
+    key1: {r: 0.39550182, g: 0.74449044, b: 1, a: 1}
+    key2: {r: 0.3820755, g: 0.7388154, b: 1, a: 0}
+    key3: {r: 0.051486313, g: 0.6079074, b: 0.8396226, a: 0}
+    key4: {r: 1, g: 0.7590759, b: 0.25, a: 0}
+    key5: {r: 0.7924528, g: 0.25000298, b: 0.018689923, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 17348
+    ctime2: 36006
+    ctime3: 50492
+    ctime4: 52814
+    ctime5: 63993
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
 --- !u!4 &242764088
 Transform:
   m_ObjectHideFlags: 0
@@ -1719,17 +1748,17 @@ PrefabInstance:
     - target: {fileID: 2553450791953928374, guid: e0d26d4bdd3114c27bb6a092d7c69935,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.35199976
+      value: -0.35200024
       objectReference: {fileID: 0}
     - target: {fileID: 2553450791953928374, guid: e0d26d4bdd3114c27bb6a092d7c69935,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.5244012
+      value: -0.52440095
       objectReference: {fileID: 0}
     - target: {fileID: 2553450791953928374, guid: e0d26d4bdd3114c27bb6a092d7c69935,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.3864212
+      value: 0.38642204
       objectReference: {fileID: 0}
     - target: {fileID: 3835631775899363192, guid: e0d26d4bdd3114c27bb6a092d7c69935,
         type: 3}
@@ -1910,12 +1939,12 @@ PrefabInstance:
     - target: {fileID: 4424965162342115972, guid: e0d26d4bdd3114c27bb6a092d7c69935,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.5244012
+      value: -0.52440095
       objectReference: {fileID: 0}
     - target: {fileID: 4424965162342115972, guid: e0d26d4bdd3114c27bb6a092d7c69935,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.18842125
+      value: 0.18842196
       objectReference: {fileID: 0}
     - target: {fileID: 6935296584295585973, guid: e0d26d4bdd3114c27bb6a092d7c69935,
         type: 3}

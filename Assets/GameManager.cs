@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     public float MusicSpeedupFactor = 0.5f;
 
+    public Gradient SkyGradient;
+
     private void Start()
     {
         if (state == GameState.Running)
@@ -64,8 +66,9 @@ public class GameManager : MonoBehaviour
         }
         else if (state == GameState.Running)
         {
-            UpdateMusic();
             currentTimeOfDay = Time.timeSinceLevelLoad;
+            UpdateMusic();
+            UpdateSky();
 
             if (state == GameState.Gameover && Input.GetKey(KeyCode.Return))
             {
@@ -139,5 +142,40 @@ public class GameManager : MonoBehaviour
         {
             MusicPlayer.pitch = 1.0f + (1 - (timeRemaining / MusicStartsSpeedingUpAfter)) * MusicSpeedupFactor;
         }
+    }
+
+    public void UpdateSky()
+    {
+        var t = currentTimeOfDay / lengthOfDay;
+        var skyColor = SkyGradient.Evaluate(t);
+        Camera.main.backgroundColor = skyColor;
+
+        /*var third = lengthOfDay / 3;
+
+        Color previousColor;
+        Color nextColor;
+        float t;
+
+        if (currentTimeOfDay < third)
+        {
+            previousColor = MorningColor;
+            nextColor = DayColor;
+            t = currentTimeOfDay / third;
+        }
+        else if (currentTimeOfDay < 2 * third)
+        {
+            previousColor = DayColor;
+            nextColor = DayColor;
+            t = 0;
+        }
+        else
+        {
+            previousColor = DayColor;
+            nextColor = EveningColor;
+            t = (currentTimeOfDay - 2 * third) / third;
+        }
+
+        var skyColor = Color.Lerp(previousColor, nextColor, t);*/
+        // Camera.main.backgroundColor = skyColor;
     }
 }
